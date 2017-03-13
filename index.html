@@ -1,0 +1,58 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+<body ng-app="WebApp" ng-cloak>
+<md-content>
+    <br>
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+
+        <h2 flex md-truncate>HackerNews</h2>
+
+        <md-button class="md-icon-button" aria-label="Favorite">
+        </md-button>
+        <div ng-controller="SortController">
+        <md-button ng-click="sortType=send(sortReverse=!sortReverse)" class="md-raised">Sort</md-button>
+        </div>
+      </div>
+    </md-toolbar>
+    </md-content>
+    <div ng-controller="fetchData" ng-cloak>
+     <ul ng-repeat="obj in results | orderBy:sortType:sortReverse" ng-show = "!$first">
+        <md-content class="md-padding" layout-xs="column" layout="row">
+          <div flex-xs flex-gt-xs="100" layout="column">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{obj.title}}</span>
+                  <span class="md-subhead">{{obj.num_points}} points | by: {{obj.author}} | created {{obj.created_at}} | {{obj.num_comments}} comments</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-lg card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-href="{{obj.url}}" target="_blank" class="md-raised md-primary">Read Article</md-button>
+              </md-card-actions>
+            </md-card>
+        </ul>
+      </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  
+  <script src="app.js">    
+  </script>
+  
+</body>
+</html>
